@@ -38,5 +38,13 @@ public class NextAuto extends NextFTCOpMode {
     @Override
     public void onStartButtonPressed() {
         autonomousRoutine().schedule();
+        telemetry.addLine("Starting autonomous routine...");
+        telemetry.update();
+    }
+
+    @Override
+    public void onStop() {
+        telemetry.addLine("Stopping autonomous routine...");
+        telemetry.update();
     }
 }
