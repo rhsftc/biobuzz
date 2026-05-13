@@ -27,7 +27,7 @@ public class Lift implements Subsystem {
     public Command toLow = new RunToPosition(controlSystem, 0).requires(this);
     public Command toMiddle = new RunToPosition(controlSystem, 500).requires(this);
     public Command toHigh = new RunToPosition(controlSystem, 1200).requires(this);
-//    public Command debugLiftPosition = new TelemetryUpdateCommand(this, ActiveOpMode.telemetry(), "Lift Position", () -> motor.getCurrentPosition());
+
     @Override
     public void periodic() {
         motor.setPower(controlSystem.calculate(motor.getState()));

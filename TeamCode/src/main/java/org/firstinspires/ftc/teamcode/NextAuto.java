@@ -5,11 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.NextSubSystems.Claw;
 import org.firstinspires.ftc.teamcode.NextSubSystems.Lift;
 
+import java.util.List;
+
 import dev.nextftc.core.commands.Command;
+import dev.nextftc.core.commands.CommandManager;
 import dev.nextftc.core.commands.delays.Delay;
 import dev.nextftc.core.commands.groups.ParallelGroup;
 import dev.nextftc.core.commands.groups.SequentialGroup;
 import dev.nextftc.core.components.SubsystemComponent;
+import dev.nextftc.ftc.ActiveOpMode;
 import dev.nextftc.ftc.NextFTCOpMode;
 
 @Autonomous(name = "Next Auto", group = "Next")
@@ -32,7 +36,6 @@ public class NextAuto extends NextFTCOpMode {
                         Claw.INSTANCE.close,
                         Lift.INSTANCE.toLow
                 )
-//                Lift.INSTANCE.debugLiftPosition
         );
     }
 
