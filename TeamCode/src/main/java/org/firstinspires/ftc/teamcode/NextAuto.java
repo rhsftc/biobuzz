@@ -16,7 +16,7 @@ import dev.nextftc.ftc.NextFTCOpMode;
 public class NextAuto extends NextFTCOpMode {
     public NextAuto() {
         addComponents(
-                new SubsystemComponent(Claw.INSTANCE, Claw.INSTANCE)
+                new SubsystemComponent(Lift.INSTANCE, Claw.INSTANCE)
         );
     }
 
@@ -25,13 +25,14 @@ public class NextAuto extends NextFTCOpMode {
                 Lift.INSTANCE.toHigh,
                 new ParallelGroup(
                         Lift.INSTANCE.toMiddle,
-                        Claw.INSTANCE.close
+                        Claw.INSTANCE.open
                 ),
                 new Delay(0.5),
                 new ParallelGroup(
-                        Claw.INSTANCE.open,
+                        Claw.INSTANCE.close,
                         Lift.INSTANCE.toLow
                 )
+//                Lift.INSTANCE.debugLiftPosition
         );
     }
 

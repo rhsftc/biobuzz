@@ -12,7 +12,7 @@ public class Claw implements Subsystem {
     private Claw() {
     }
 
-    public Command open = new SetPosition(servo, 0.1).requires(this);
-    public Command close = new SetPosition(servo, 0.2).requires(this);
+    public Command open = new SetPosition(servo, 0.05).requires(this);
+    public Command close = new SetPosition(servo, 0.0).requires(this);
 
 }

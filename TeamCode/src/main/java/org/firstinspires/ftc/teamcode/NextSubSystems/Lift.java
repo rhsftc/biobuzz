@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode.NextSubSystems;
 
+import org.firstinspires.ftc.teamcode.TelemetryUpdateCommand;
+
 import dev.nextftc.control.ControlSystem;
 import dev.nextftc.core.commands.Command;
 import dev.nextftc.core.subsystems.Subsystem;
+import dev.nextftc.ftc.ActiveOpMode;
 import dev.nextftc.hardware.controllable.RunToPosition;
 import dev.nextftc.hardware.impl.MotorEx;
 import dev.nextftc.hardware.positionable.SetPosition;
@@ -24,7 +27,7 @@ public class Lift implements Subsystem {
     public Command toLow = new RunToPosition(controlSystem, 0).requires(this);
     public Command toMiddle = new RunToPosition(controlSystem, 500).requires(this);
     public Command toHigh = new RunToPosition(controlSystem, 1200).requires(this);
-
+//    public Command debugLiftPosition = new TelemetryUpdateCommand(this, ActiveOpMode.telemetry(), "Lift Position", () -> motor.getCurrentPosition());
     @Override
     public void periodic() {
         motor.setPower(controlSystem.calculate(motor.getState()));
