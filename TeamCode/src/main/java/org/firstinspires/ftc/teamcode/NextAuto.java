@@ -20,7 +20,8 @@ import dev.nextftc.ftc.NextFTCOpMode;
 public class NextAuto extends NextFTCOpMode {
     public NextAuto() {
         addComponents(
-                new SubsystemComponent(Lift.INSTANCE, Claw.INSTANCE)
+                new SubsystemComponent(Lift.INSTANCE, Claw.INSTANCE),
+                CommandManager.INSTANCE
         );
     }
 
@@ -42,14 +43,8 @@ public class NextAuto extends NextFTCOpMode {
     @Override
     public void onStartButtonPressed() {
         autonomousRoutine().setName("Autonomous Routine");
-        telemetry.addLine("Scheduling autonomous routine...");
-        telemetry.update();
+        telemetry.addData("Scheduling: ", autonomousRoutine().name());
         autonomousRoutine().schedule();
-    }
-
-    @Override
-    public void onStop() {
-        telemetry.addLine("Stopping autonomous routine...");
         telemetry.update();
     }
 }
