@@ -17,7 +17,7 @@ public class Lift implements Subsystem {
     private Lift() {
     }
 
-    private MotorEx motor = new MotorEx("motor");
+    public MotorEx motor = new MotorEx("motor");
 
     private ControlSystem controlSystem = ControlSystem.builder()
             .posPid(0.005, 0, 0)
