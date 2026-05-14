@@ -32,18 +32,15 @@ public class NextAuto extends NextFTCOpMode {
     private Command autonomousRoutine() {
         return new SequentialGroup(
                 Lift.INSTANCE.toHigh,
-//                telemetryCommand(),
                 new ParallelGroup(
                         Lift.INSTANCE.toMiddle,
                         Claw.INSTANCE.open
                 ),
-//                telemetryCommand(),
-                new Delay(0.5),
+                new Delay(1.5),
                 new ParallelGroup(
                         Claw.INSTANCE.close,
                         Lift.INSTANCE.toLow
                 )
-//                telemetryCommand()
         );
     }
 
@@ -52,6 +49,7 @@ public class NextAuto extends NextFTCOpMode {
         autonomousRoutine().setName("Autonomous Routine");
         telemetry.addData("Scheduling: ", autonomousRoutine());
         autonomousRoutine().schedule();
+//        telemetryCommand().schedule();
         telemetry.update();
     }
 }
