@@ -124,7 +124,7 @@ public class RobotHardware {
         opMode.telemetry.addLine();
     }
 
-    void launch(boolean startLauncher, boolean startWindmill) {
+    void launch(boolean startLauncher, boolean startWindmill, double intakePower) {
         /*
          * Calling gamepad1.right_bumper returns a boolean which will be true if the bumper is
          * held down, and false if it is not. Notably, this will continue to be true for every
@@ -133,6 +133,7 @@ public class RobotHardware {
          * holding down the right gamepad. If they are, then we want to start spinning up the launcher.
          * Otherwise, we start spinning the launcher down.
          */
+        this.intakePower = intakePower;
         if (startLauncher) {
             launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
         } else {
@@ -148,22 +149,18 @@ public class RobotHardware {
          */
         if (startWindmill && launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
             windmillServo.setPower(1);
-            intakePower += 0.5;
+            this.intakePower += 0.5;
         } else {
             windmillServo.setPower(0);
         }
-    }
-
-    /*
-     * Here we set our intake motor and servos to their intake power. The order of operations
-     * here is important though. The gamepad triggers define the starting point for the intake
-     * power variable in each loop of our code, but inside our launch function we also sometimes
-     * change the intake power. So we need to give our launch function a chance to modify the
-     * variable before we write it to our motor and servos.
-     */
-
-    void setIntakePower(double power) {
-        intake.setPower(power);
+        /*
+         * Here we set our intake motor and servos to their intake power. The order of operations
+         * here is important though. The gamepad triggers define the starting point for the intake
+         * power variable in each loop of our code, but inside our launch function we also sometimes
+         * change the intake power. So we need to give our launch function a chance to modify the
+         * variable before we write it to our motor and servos.
+         */
+        intake.setPower(intakePower);
         leftIntakeServo.setPower(intakePower);
         rightIntakeServo.setPower(intakePower);
     }
