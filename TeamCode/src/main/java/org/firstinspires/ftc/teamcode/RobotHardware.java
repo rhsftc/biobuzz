@@ -106,4 +106,65 @@ public class RobotHardware {
         rightIntakeServo.setDirection(DcMotorSimple.Direction.REVERSE);
         windmillServo.setDirection(DcMotorSimple.Direction.REVERSE);
     }
+
+    void arcadeDrive(double forward, double rotate) {
+        leftPower = forward + rotate;
+        rightPower = forward - rotate;
+
+        /*
+         * Send calculated power to motors
+         */
+        leftDrive.setPower(leftPower);
+        rightDrive.setPower(rightPower);
+
+        /*
+         * Show motor powers on the Driver Station via telemetry.
+         */
+        opMode.telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+        opMode.telemetry.addLine();
+    }
+
+    void launch(boolean startLauncher, boolean startWindmill) {
+        /*
+         * Calling gamepad1.right_bumper returns a boolean which will be true if the bumper is
+         * held down, and false if it is not. Notably, this will continue to be true for every
+         * cycle of our code that the driver holds down that bumper.
+         * The first step of our launch() function is checking to see if the user is currently
+         * holding down the right gamepad. If they are, then we want to start spinning up the launcher.
+         * Otherwise, we start spinning the launcher down.
+         */
+        if (startLauncher) {
+            launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
+        } else {
+            launcher.setVelocity(0);
+        }
+
+        /*
+         * Here we ask if the driver is currently pressing the right bumper, AND the launcher is
+         * spinning fast enough to make a successful shot. If it is, then we will turn on the
+         * windmill servo to start feeding the elements into the launcher motor. We also
+         * add some power to the intake power. This can sometimes help dislodge stuck elements from
+         * inside the hopper.
+         */
+        if (startWindmill && launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
+            windmillServo.setPower(1);
+            intakePower += 0.5;
+        } else {
+            windmillServo.setPower(0);
+        }
+    }
+
+    /*
+     * Here we set our intake motor and servos to their intake power. The order of operations
+     * here is important though. The gamepad triggers define the starting point for the intake
+     * power variable in each loop of our code, but inside our launch function we also sometimes
+     * change the intake power. So we need to give our launch function a chance to modify the
+     * variable before we write it to our motor and servos.
+     */
+
+    void setIntakePower(double power) {
+        intake.setPower(power);
+        leftIntakeServo.setPower(intakePower);
+        rightIntakeServo.setPower(intakePower);
+    }
 }
