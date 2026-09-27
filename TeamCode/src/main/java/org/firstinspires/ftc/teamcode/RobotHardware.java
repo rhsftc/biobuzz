@@ -12,10 +12,10 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 public class RobotHardware {
     private OpMode opMode;
     // Declare OpMode members.
-    private DcMotor leftDrive = null;
-    private DcMotor rightDrive = null;
+    private DcMotorEx leftDrive = null;
+    private DcMotorEx rightDrive = null;
     private DcMotorEx launcher = null;
-    private DcMotor intake = null;
+    private DcMotorEx intake = null;
     private CRServo leftIntakeServo = null;
     private CRServo rightIntakeServo = null;
     private CRServo windmillServo = null;
@@ -56,9 +56,9 @@ public class RobotHardware {
          * to 'get' must correspond to the names assigned during the robot configuration
          * step.
          */
-        leftDrive = opMode.hardwareMap.get(DcMotor.class, "left_drive");
-        rightDrive = opMode.hardwareMap.get(DcMotor.class, "right_drive");
-        intake = opMode.hardwareMap.get(DcMotor.class, "intake");
+        leftDrive = opMode.hardwareMap.get(DcMotorEx.class, "left_drive");
+        rightDrive = opMode.hardwareMap.get(DcMotorEx.class, "right_drive");
+        intake = opMode.hardwareMap.get(DcMotorEx.class, "intake");
         launcher = opMode.hardwareMap.get(DcMotorEx.class, "launcher");
         windmillServo = opMode.hardwareMap.get(CRServo.class, "windmill");
         leftIntakeServo = opMode.hardwareMap.get(CRServo.class, "left_intake_servo");
