@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 public class RobotHardware {
-    private OpMode opMode;
+    private final OpMode opMode;
     // Declare OpMode members.
     private DcMotorEx leftDrive = null;
     private DcMotorEx rightDrive = null;
