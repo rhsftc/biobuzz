@@ -16,6 +16,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
     /TODO: Add more functionality to the autonomous program, such as starting locations and
     * launching pollen.
  */
+//TODO: TEST THIS ON YOUR ROBOT. IT HAS NOT BEEN TESTED ON A REAL ROBOT SINCE RE-FACTORING THE HARDWARE CLASS.
+
 @Autonomous(name = "Starterbot Auto", group = "Auto", preselectTeleOp = "StarterBot Teleop")
 public class StarterbotAuto extends OpMode {
 

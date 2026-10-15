@@ -41,6 +41,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * Since the dynamics of a launcher wheel system varies greatly from those of most other FTC mechanisms,
  * we will also need to adjust the "PIDF" coefficients with some that are a better fit for our application.
  */
+//TODO: TEST THIS ON YOUR ROBOT. IT HAS NOT BEEN TESTED ON A REAL ROBOT SINCE RE-FACTORING THE HARDWARE CLASS.
 
 @TeleOp(name = "StarterBot Teleop", group = "TeleOp")
 //@Disabled
